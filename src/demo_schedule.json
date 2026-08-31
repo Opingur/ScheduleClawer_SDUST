@@ -1,0 +1,12 @@
+{
+  "weekCount": 2,
+  "courses": [
+    {"week": 1, "weekday": 1, "courseName": "人工智能程序设计", "teacher": "赵庆峰", "location": "7号楼 J7-113室", "startPeriod": 1, "endPeriod": 2, "startTime": "08:00", "endTime": "09:50", "sourceTime": "1-8周 [1-2节]"},
+    {"week": 1, "weekday": 2, "courseName": "大学物理（B）", "teacher": "刁大生", "location": "1号楼 J1-1122室", "startPeriod": 1, "endPeriod": 2, "startTime": "08:00", "endTime": "09:50", "sourceTime": "1-12周 [1-2节]"},
+    {"week": 1, "weekday": 3, "courseName": "数据结构（A）", "teacher": "张晓庆", "location": "7号楼 J7-113室", "startPeriod": 3, "endPeriod": 4, "startTime": "10:10", "endTime": "12:00", "sourceTime": "1-12周 [3-4节]"},
+    {"week": 1, "weekday": 5, "courseName": "大学物理实验（B）", "teacher": "宋红岩", "location": "工程实训大楼 702室", "startPeriod": 5, "endPeriod": 8, "startTime": "14:00", "endTime": "18:00", "sourceTime": "1-12周 [5-8节]"},
+    {"week": 2, "weekday": 1, "courseName": "人工智能程序设计", "teacher": "赵庆峰", "location": "7号楼 J7-113室", "startPeriod": 1, "endPeriod": 2, "startTime": "08:00", "endTime": "09:50", "sourceTime": "1-8周 [1-2节]"},
+    {"week": 2, "weekday": 3, "courseName": "体育与健康（4-3）", "teacher": "张扬", "location": "TY楼", "startPeriod": 5, "endPeriod": 6, "startTime": "14:00", "endTime": "15:50", "sourceTime": "1-8周 [5-6节]"}
+  ]
+}
+

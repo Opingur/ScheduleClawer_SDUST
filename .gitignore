@@ -1,0 +1,20 @@
+# Sensitive local state
+credentials.dat
+browser_profile/
+exports/
+
+# Generated files and release artifacts
+build/
+dist/
+release/
+outputs/
+verification/
+.playwright-cli/
+__pycache__/
+*.py[cod]
+*.spec
+
+# Retired local web prototype
+frontend/
+src/web_server.py
+src/export_xlsx.mjs
