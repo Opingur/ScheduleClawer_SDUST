@@ -109,7 +109,45 @@ def _date_label(term_start: date, week: int, weekday: int) -> str:
     return f"{current.month}月{current.day}日"
 
 
-def _create_week_sheet(book: Workbook, courses: list[dict], week: int, term_start: date) -> None:
+def _period_slots(current: list[dict], time_map: dict[str, dict]) -> list[dict]:
+    """按教务系统的节次时间块生成课表行，而不是按某一门课的时长生成。"""
+    period_numbers = {
+        period
+        for item in current
+        for period in range(int(item["startPeriod"]), int(item["endPeriod"]) + 1)
+    }
+    slots: list[dict] = []
+    for period in sorted(period_numbers):
+        info = time_map.get(str(period), {})
+        key = (info.get("start", ""), info.get("end", ""))
+        if slots and slots[-1]["key"] == key and slots[-1]["endPeriod"] == period - 1:
+            slots[-1]["endPeriod"] = period
+        else:
+            slots.append({
+                "startPeriod": period,
+                "endPeriod": period,
+                "startTime": key[0],
+                "endTime": key[1],
+                "key": key,
+            })
+    if not time_map:
+        slots = []
+        for item in sorted(current, key=lambda value: (value["startPeriod"], value["endPeriod"])):
+            key = (item["startPeriod"], item["endPeriod"], item.get("startTime", ""), item.get("endTime", ""))
+            if not any(existing["key"] == key for existing in slots):
+                slots.append({
+                    "startPeriod": item["startPeriod"],
+                    "endPeriod": item["endPeriod"],
+                    "startTime": item.get("startTime", ""),
+                    "endTime": item.get("endTime", ""),
+                    "key": key,
+                })
+    return slots
+
+
+def _create_week_sheet(
+    book: Workbook, courses: list[dict], week: int, term_start: date, time_map: dict[str, dict]
+) -> None:
     sheet = book.create_sheet(f"第{week}周")
     _apply_title(sheet, f"第{week}周课表")
     for column, value in enumerate(("日期", *(_date_label(term_start, week, day) for day in range(1, 8))), 1):
@@ -119,10 +157,7 @@ def _create_week_sheet(book: Workbook, courses: list[dict], week: int, term_star
         sheet.cell(4, column, value)
     _style_header(sheet[4])
     current = [item for item in courses if item["week"] == week]
-    slots = {}
-    for item in current:
-        key = (item["startPeriod"], item["endPeriod"], item.get("startTime", ""), item.get("endTime", ""))
-        slots.setdefault(key, item)
+    slots = _period_slots(current, time_map)
     if not slots:
         sheet.merge_cells("A5:H5")
         cell = sheet["A5"]
@@ -130,7 +165,7 @@ def _create_week_sheet(book: Workbook, courses: list[dict], week: int, term_star
         cell.fill = PatternFill("solid", fgColor="F7F9FC")
         cell.alignment = Alignment(horizontal="center", vertical="center")
         sheet.row_dimensions[5].height = 50
-    for offset, slot in enumerate(sorted(slots.values(), key=lambda item: (item["startPeriod"], item["endPeriod"])), 5):
+    for offset, slot in enumerate(slots, 5):
         clock = (
             f"{slot.get('startTime')}–{slot.get('endTime')}"
             if slot.get("startTime") and slot.get("endTime") else "未识别钟点"
@@ -142,13 +177,47 @@ def _create_week_sheet(book: Workbook, courses: list[dict], week: int, term_star
             items = [
                 item for item in current
                 if item["weekday"] == weekday
-                and item["startPeriod"] == slot["startPeriod"]
-                and item["endPeriod"] == slot["endPeriod"]
+                and item["startPeriod"] <= slot["startPeriod"]
+                and item["endPeriod"] >= slot["endPeriod"]
             ]
             cell = sheet.cell(offset, weekday + 1, "\n\n".join(_card_text(item) for item in items))
             _style_grid(cell, _color_for(items[0]["courseName"]) if items else None)
             height = max(height, min(180, 34 + len(items) * 62))
         sheet.row_dimensions[offset].height = height
+    # 同一门（或同一组并行）课程连续覆盖多个标准时间块时，纵向合并为一张课程卡片。
+    for weekday in range(1, 8):
+        column = weekday + 1
+        start_index = 0
+        while start_index < len(slots):
+            slot = slots[start_index]
+            items = [
+                item for item in current
+                if item["weekday"] == weekday
+                and item["startPeriod"] <= slot["startPeriod"]
+                and item["endPeriod"] >= slot["endPeriod"]
+            ]
+            signature = tuple(_card_text(item) for item in items)
+            end_index = start_index
+            while end_index + 1 < len(slots):
+                next_slot = slots[end_index + 1]
+                next_items = [
+                    item for item in current
+                    if item["weekday"] == weekday
+                    and item["startPeriod"] <= next_slot["startPeriod"]
+                    and item["endPeriod"] >= next_slot["endPeriod"]
+                ]
+                if tuple(_card_text(item) for item in next_items) != signature:
+                    break
+                end_index += 1
+            if signature and end_index > start_index:
+                sheet.merge_cells(
+                    start_row=5 + start_index,
+                    start_column=column,
+                    end_row=5 + end_index,
+                    end_column=column,
+                )
+                sheet.cell(5 + start_index, column).alignment = Alignment(vertical="top", wrap_text=True)
+            start_index = end_index + 1
     _set_widths(sheet, 16, 24)
     sheet.freeze_panes = "B5"
 
@@ -186,6 +255,7 @@ def _create_details(book: Workbook, courses: list[dict]) -> None:
 
 def export_schedule(payload: dict, output: Path) -> None:
     courses = list(payload.get("courses") or [])
+    time_map = dict(payload.get("timeMap") or {})
     week_count = int(payload.get("weekCount") or 20)
     try:
         term_start = date.fromisoformat(str(payload.get("termStartMonday") or "2026-08-31"))
@@ -195,7 +265,7 @@ def export_schedule(payload: dict, output: Path) -> None:
     book.remove(book.active)
     _create_overview(book, courses, week_count)
     for week in range(1, week_count + 1):
-        _create_week_sheet(book, courses, week, term_start)
+        _create_week_sheet(book, courses, week, term_start, time_map)
     _create_details(book, courses)
     output.parent.mkdir(parents=True, exist_ok=True)
     book.save(output)

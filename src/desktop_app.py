@@ -339,6 +339,7 @@ class ScheduleDesktopApp:
                     "weekCount": payload["week_count"],
                     "termStartMonday": payload["term_start_monday"],
                     "courses": courses,
+                    "timeMap": raw["timeMap"],
                 },
                 payload["output"],
             )
