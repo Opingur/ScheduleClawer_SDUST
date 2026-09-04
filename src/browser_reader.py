@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import time
 from pathlib import Path
 
@@ -13,6 +14,17 @@ TIMETABLE_URL = (
     + "xskb/xskb_list.do?viweType=0&showallprint=0&showkchprint=0"
     + "&showkink=0&showfzmprint=0&baseUrl=%2Fjsxsd&zc="
 )
+
+
+def _bundled_chromium_executable() -> Path | None:
+    """返回 PyInstaller 安装目录中的 Chromium；开发运行时不干预默认路径。"""
+    if not getattr(sys, "frozen", False):
+        return None
+
+    bundle_root = Path(getattr(sys, "_MEIPASS", Path(sys.executable).parent))
+    browser_root = bundle_root / "playwright" / "driver" / "package" / ".local-browsers"
+    candidates = sorted(browser_root.glob("chromium-*/chrome-win*/chrome.exe"))
+    return candidates[0] if candidates else None
 
 VPN_AUTH_STATE_SCRIPT = r"""
 () => {
@@ -361,15 +373,27 @@ class BrowserSession:
         self.page = None
 
     def open(self):
-        # 打包版把 Chromium 放在 Playwright 自己的 .local-browsers 目录。
+        # 打包版优先显式使用安装目录中的 Chromium，避免误落到用户本机 Python 路径。
         os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", "0")
         try:
             from playwright.sync_api import sync_playwright
         except ImportError as error:
             raise RuntimeError("尚未安装 Playwright。请先运行：python -m pip install -r requirements.txt") from error
 
+        bundled_chromium = _bundled_chromium_executable()
         self.runtime = sync_playwright().start()
-        self.browser = self.runtime.chromium.launch(headless=False)
+        launch_options = {"headless": False}
+        if bundled_chromium:
+            launch_options["executable_path"] = str(bundled_chromium)
+        try:
+            self.browser = self.runtime.chromium.launch(**launch_options)
+        except Exception as error:
+            if getattr(sys, "frozen", False):
+                raise RuntimeError("安装包内的 Chromium 无法启动。请重新下载并安装完整的 Installer。") from error
+            raise RuntimeError(
+                "当前运行的是开发版，未找到 Playwright Chromium。请使用 Installer 安装的“课表导出器”，"
+                "或在开发环境运行：python -m playwright install chromium"
+            ) from error
         self.context = self.browser.new_context(viewport={"width": 1440, "height": 960})
         self.page = self.context.new_page()
         self.page.goto(WEBVPN_LOGIN_URL, wait_until="domcontentloaded", timeout=90_000)
