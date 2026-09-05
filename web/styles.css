@@ -83,11 +83,19 @@ input:focus-visible, button:focus-visible, .bookmarklet:focus-visible, summary:f
 .secondary-button:hover { background: var(--blue-soft); }
 
 .bookmark-panel { border-color: #9ebce8; }
-.bookmark-card { display: flex; gap: 16px; align-items: center; padding: 20px 18px; }
-.bookmark-card p { margin: 0 0 4px; font-size: 14px; line-height: 1.6; }
-.bookmarklet { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; padding: 0 17px; color: #fff; background: var(--blue); border: 1px solid var(--blue-dark); border-radius: 4px; box-shadow: inset 0 1px rgba(255,255,255,.22); font-weight: 700; text-decoration: none; cursor: grab; }
+.bookmark-explain { margin: 0; padding: 15px 18px; color: #24436e; background: #f4f8ff; border-bottom: 1px solid #d7e5fb; font-size: 14px; line-height: 1.65; }
+.install-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+.install-step { min-height: 222px; padding: 18px; border-right: 1px solid var(--line); }
+.install-step:last-child { border-right: 0; }
+.step-label { display: inline-block; padding: 3px 7px; color: #174a99; background: var(--blue-soft); border: 1px solid #b9d5fb; border-radius: 3px; font-size: 12px; font-weight: 700; }
+.install-step h3 { margin: 10px 0 8px; font-size: 15px; }
+.install-step p { margin: 5px 0; color: var(--muted); font-size: 13px; line-height: 1.62; }
+.drag-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 13px 0 9px; }
+.bookmarklet { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; padding: 0 14px; color: #fff; background: var(--blue); border: 1px solid var(--blue-dark); border-radius: 4px; box-shadow: inset 0 1px rgba(255,255,255,.22); font-weight: 700; text-decoration: none; cursor: grab; }
 .bookmarklet:hover { background: var(--blue-dark); }
 .bookmarklet:active { cursor: grabbing; }
+.drag-arrow { color: var(--blue); font-size: 23px; font-weight: 700; }
+.toolbar-example { display: inline-flex; min-height: 32px; align-items: center; padding: 0 10px; color: #536271; background: #f7f8fa; border: 1px dashed #aeb9c4; border-radius: 3px; font-size: 13px; }
 .bookmark-actions { display: flex; align-items: center; gap: 10px; border-top: 1px dashed var(--line); }
 .bookmark-actions .secondary-button { margin-bottom: 12px; }
 details { margin: 0 18px 16px; color: var(--muted); font-size: 13px; line-height: 1.6; }
@@ -105,7 +113,9 @@ kbd { padding: 1px 5px; color: #333d49; background: #eef1f4; border: 1px solid #
   .privacy-notice { display: block; }
   .privacy-notice strong { display: block; }
   .form-grid { grid-template-columns: 1fr; gap: 10px; }
-  .bookmark-card { align-items: flex-start; flex-direction: column; }
+  .install-steps { grid-template-columns: 1fr; }
+  .install-step { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .install-step:last-child { border-bottom: 0; }
   .bookmark-actions { align-items: flex-start; flex-direction: column; padding-bottom: 10px; gap: 0; }
   .bookmark-actions .secondary-button { margin-bottom: 4px; }
 }
