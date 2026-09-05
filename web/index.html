@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="山科课表导出器网页版：在已登录的教务系统课表页本地生成 Excel。" />
   <title>山科课表导出器 · 网页版</title>
-  <link rel="icon" href="data:," />
+  <link rel="icon" href="./icon.svg" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <meta name="theme-color" content="#202631" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
@@ -27,7 +29,34 @@
       <span>本页不提供学校登录，也不保存课表；导出只在你的浏览器内完成。书签只加载本项目公开的导出代码；网页更新后，点击“更新书签设置”即可获得最新版。</span>
     </section>
 
-    <section class="panel" aria-labelledby="steps-title">
+        <section class="panel launch-panel" aria-labelledby="launch-title">
+      <div class="panel-heading">
+        <h2 id="launch-title">以后怎么启动？</h2>
+        <span class="hint">不需要输入命令</span>
+      </div>
+      <div class="launch-options">
+        <article class="launch-option">
+          <span class="step-label">推荐</span>
+          <h3>安装到桌面</h3>
+          <p>在支持的电脑浏览器中安装后，桌面和开始菜单会出现“山科课表导出器”，双击即可打开。</p>
+          <button id="install-app" class="primary-button" type="button" hidden>安装到桌面</button>
+          <p id="install-status" class="hint" role="status" aria-live="polite">此入口会在支持安装网页应用的浏览器中显示。</p>
+        </article>
+        <article class="launch-option">
+          <span class="step-label">所有电脑可用</span>
+          <h3>下载双击启动器</h3>
+          <p>下载一次即可。以后双击该文件，会用默认浏览器打开最新版网页。</p>
+          <a class="secondary-button launch-download" href="./启动课表导出器网页版.html" download>下载网页版启动器</a>
+        </article>
+        <article class="launch-option">
+          <span class="step-label">最简单</span>
+          <h3>收藏本网页</h3>
+          <p>把当前网页加入浏览器收藏夹，以后点收藏即可进入，不需要安装任何程序。</p>
+          <button id="copy-page-link" class="secondary-button" type="button">复制网页地址</button>
+        </article>
+      </div>
+    </section>
+<section class="panel" aria-labelledby="steps-title">
       <div class="panel-heading">
         <h2 id="steps-title">使用步骤</h2>
         <span class="hint">首次只需添加一次书签工具</span>

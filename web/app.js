@@ -5,6 +5,10 @@
   const bookmark = document.querySelector('#bookmarklet');
   const validation = document.querySelector('#validation-message');
   const copyStatus = document.querySelector('#copy-status');
+  const installAppButton = document.querySelector('#install-app');
+  const installStatus = document.querySelector('#install-status');
+  const copyPageLinkButton = document.querySelector('#copy-page-link');
+  let deferredInstallPrompt = null;
 
   function getConfig() {
     const weekCount = Number.parseInt(weekInput.value, 10);
@@ -61,8 +65,48 @@
     }
   }
 
+  async function copyPageLink() {
+    const text = location.href;
+    try {
+      await navigator.clipboard.writeText(text);
+      installStatus.textContent = '网页版地址已复制，可以发送给其他同学。';
+    } catch (_) {
+      installStatus.textContent = '浏览器未授予复制权限，请直接从地址栏复制网页地址。';
+    }
+  }
+
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    installAppButton.hidden = false;
+    installStatus.textContent = '可安装为桌面应用；安装后不需要输入命令。';
+  });
+
+  window.addEventListener('appinstalled', () => {
+    deferredInstallPrompt = null;
+    installAppButton.hidden = true;
+    installStatus.textContent = '已安装到桌面或开始菜单。以后直接双击“山科课表导出器”即可。';
+  });
+
+  installAppButton.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    const choice = await deferredInstallPrompt.userChoice;
+    if (choice.outcome === 'accepted') installStatus.textContent = '正在安装；完成后可从桌面或开始菜单启动。';
+    else installStatus.textContent = '已取消安装。你仍可下载“网页版启动器”或收藏本网页。';
+    deferredInstallPrompt = null;
+    installAppButton.hidden = true;
+  });
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(() => {
+      installStatus.textContent = '桌面安装功能暂不可用；仍可下载“网页版启动器”或收藏本网页。';
+    }));
+  }
+
   document.querySelector('#refresh-bookmark').addEventListener('click', refresh);
   document.querySelector('#copy-bookmark').addEventListener('click', copyBookmark);
+  copyPageLinkButton.addEventListener('click', copyPageLink);
   weekInput.addEventListener('change', refresh);
   dateInput.addEventListener('change', refresh);
   refresh();

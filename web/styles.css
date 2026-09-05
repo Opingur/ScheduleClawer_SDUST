@@ -82,6 +82,14 @@ input:focus-visible, button:focus-visible, .bookmarklet:focus-visible, summary:f
 .secondary-button { margin: 10px 18px 18px; padding: 8px 13px; color: #173f7a; background: #f4f8ff; border: 1px solid #8db3e8; border-radius: 3px; cursor: pointer; }
 .secondary-button:hover { background: var(--blue-soft); }
 
+.launch-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.launch-option { min-height: 222px; padding: 18px; border-right: 1px solid var(--line); }
+.launch-option:last-child { border-right: 0; }
+.launch-option h3 { margin: 10px 0 8px; font-size: 15px; }
+.launch-option p { margin: 5px 0 14px; color: var(--muted); font-size: 13px; line-height: 1.62; }
+.primary-button { margin: 10px 0 8px; padding: 8px 13px; color: #fff; background: var(--blue); border: 1px solid var(--blue-dark); border-radius: 3px; cursor: pointer; }
+.primary-button:hover { background: var(--blue-dark); }
+.launch-download { display: inline-flex; align-items: center; justify-content: center; margin: 10px 0 8px; text-decoration: none; }
 .bookmark-panel { border-color: #9ebce8; }
 .bookmark-explain { margin: 0; padding: 15px 18px; color: #24436e; background: #f4f8ff; border-bottom: 1px solid #d7e5fb; font-size: 14px; line-height: 1.65; }
 .install-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
@@ -117,9 +125,9 @@ kbd { padding: 1px 5px; color: #333d49; background: #eef1f4; border: 1px solid #
   .privacy-notice { display: block; }
   .privacy-notice strong { display: block; }
   .form-grid { grid-template-columns: 1fr; gap: 10px; }
-  .install-steps { grid-template-columns: 1fr; }
-  .install-step { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
-  .install-step:last-child { border-bottom: 0; }
+  .launch-options, .install-steps { grid-template-columns: 1fr; }
+  .launch-option, .install-step { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .launch-option:last-child, .install-step:last-child { border-bottom: 0; }
   .bookmark-actions { align-items: flex-start; flex-direction: column; padding-bottom: 10px; gap: 0; }
   .bookmark-actions .secondary-button { margin-bottom: 4px; }
 }

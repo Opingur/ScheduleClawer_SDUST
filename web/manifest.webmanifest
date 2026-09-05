@@ -1,0 +1,17 @@
+{
+  "name": "山科课表导出器",
+  "short_name": "课表导出器",
+  "description": "在已登录的山东科技大学教务系统课表页本地生成 Excel。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f4f6",
+  "theme_color": "#202631",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
