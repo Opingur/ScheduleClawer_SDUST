@@ -61,23 +61,40 @@
 
     <section class="panel bookmark-panel" aria-labelledby="bookmark-title">
       <div class="panel-heading">
-        <h2 id="bookmark-title">导出书签</h2>
-        <span class="required">请使用桌面浏览器</span>
+        <h2 id="bookmark-title">把“一键导出按钮”放进收藏栏</h2>
+        <span class="required">请使用电脑浏览器</span>
       </div>
-      <div class="bookmark-card">
-        <a id="bookmarklet" class="bookmarklet" href="#" draggable="true">↧ 导出山科课表</a>
-        <div>
-          <p><strong>拖动上面的按钮</strong>到浏览器收藏栏，然后在课表页面点击它。</p>
-          <p class="hint">Chrome / Edge：按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> 显示收藏栏。Safari 可将按钮拖到收藏栏。</p>
-        </div>
+      <p class="bookmark-explain"><strong>它不是插件，也不需要安装。</strong>把下面的蓝色按钮拖进浏览器顶部的“收藏栏”，以后在课表页点一下它，就会下载 Excel。</p>
+      <div class="install-steps" aria-label="添加一键导出按钮的操作步骤">
+        <article class="install-step">
+          <span class="step-label">第 1 步</span>
+          <h3>先显示浏览器收藏栏</h3>
+          <p><strong>Chrome / Edge：</strong>按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd>。</p>
+          <p><strong>Firefox：</strong>右键浏览器顶部空白处 → 勾选“书签工具栏” → 选择“始终显示”。</p>
+        </article>
+        <article class="install-step drag-step">
+          <span class="step-label">第 2 步</span>
+          <h3>按住蓝色按钮，拖到收藏栏</h3>
+          <div class="drag-row">
+            <a id="bookmarklet" class="bookmarklet" href="#" draggable="true">↧ 导出山科课表</a>
+            <span class="drag-arrow" aria-hidden="true">→</span>
+            <span class="toolbar-example">收藏栏</span>
+          </div>
+          <p>看到收藏栏里出现“导出山科课表”，就添加成功了。</p>
+        </article>
+        <article class="install-step">
+          <span class="step-label">第 3 步</span>
+          <h3>回到课表页，点击收藏栏里的它</h3>
+          <p>先确认“学期理论课表”已经显示、周次是“全部”，再点击收藏栏中的“导出山科课表”。Excel 会自动下载。</p>
+        </article>
       </div>
       <div class="bookmark-actions">
-        <button id="copy-bookmark" class="secondary-button" type="button">复制书签代码</button>
+        <button id="copy-bookmark" class="secondary-button" type="button">不会拖动？复制按钮代码</button>
         <span id="copy-status" class="hint" role="status" aria-live="polite"></span>
       </div>
       <details>
-        <summary>无法拖动书签？</summary>
-        <p>先点击“复制书签代码”，新建一个浏览器收藏，将复制的内容粘贴到收藏的网址（URL）栏。请不要把它粘贴到教务系统的地址栏执行。</p>
+        <summary>“复制按钮代码”怎么用？</summary>
+        <p>新建一个浏览器收藏，在“名称”填“导出山科课表”，在“网址 / URL”一栏粘贴复制的内容并保存。Firefox 也支持这种方式。请不要把代码粘贴到教务系统地址栏。</p>
       </details>
     </section>
 
@@ -87,7 +104,7 @@
         <li>必须在“学期理论课表”已显示、周次为“全部”的页面点击书签。</li>
         <li>若学校页面改版、出现验证码或浏览器阻止脚本，请保留截图和页面地址反馈，不要发送密码、Cookie 或完整课表。</li>
         <li>书签必须在当前课表页面以页面权限运行；学校若启用严格 CSP，或课表位于跨域 iframe，浏览器会阻止读取。纯静态网页无法绕过该限制。</li>
-        <li>网页可在任意现代浏览器打开；书签导出主要支持 Chrome、Edge、Safari 等桌面浏览器。</li>
+        <li>网页可在任意现代浏览器打开；书签导出主要支持 Chrome、Edge、Firefox、Safari 等桌面浏览器。</li>
       </ul>
     </section>
   </main>
