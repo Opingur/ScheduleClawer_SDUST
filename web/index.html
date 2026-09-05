@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="山科课表导出器网页版：在已登录的教务系统课表页本地生成 Excel。" />
+  <title>山科课表导出器 · 网页版</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span>山科课表导出器</span>
+      <span class="topbar-note">网页版 · 本地处理</span>
+    </header>
+
+    <section class="page-heading" aria-labelledby="page-title">
+      <p class="eyebrow">SDUST · SCHEDULE EXPORT</p>
+      <h1 id="page-title">课表导出器 <span>网页版</span></h1>
+      <p>在已登录的教务系统课表页中读取“全部周次”，直接在浏览器本地生成 Excel。</p>
+    </section>
+
+    <section class="privacy-notice" aria-label="隐私说明">
+      <strong>不收集账号与密码。</strong>
+      <span>本页不提供学校登录，也不保存课表；导出只在你的浏览器内完成。</span>
+    </section>
+
+    <section class="panel" aria-labelledby="steps-title">
+      <div class="panel-heading">
+        <h2 id="steps-title">使用步骤</h2>
+        <span class="hint">首次只需添加一次书签工具</span>
+      </div>
+      <ol class="steps">
+        <li><b>1</b><span>在浏览器中正常登录 WebVPN 与教务系统。</span></li>
+        <li><b>2</b><span>进入“培养服务 → 我的课表 → 学期理论课表”，将周次设为“全部”后点击查询。</span></li>
+        <li><b>3</b><span>按下方提示把“导出山科课表”拖进收藏栏。</span></li>
+        <li><b>4</b><span>回到已显示课表的标签页，点击该收藏，即可下载 Excel。</span></li>
+      </ol>
+    </section>
+
+    <section class="panel" aria-labelledby="options-title">
+      <div class="panel-heading">
+        <h2 id="options-title">导出设置</h2>
+        <span class="hint">这些信息仅写入书签，不会上传</span>
+      </div>
+      <div class="form-grid">
+        <label>
+          <span>学期总周数</span>
+          <input id="week-count" type="number" min="1" max="30" value="20" inputmode="numeric" />
+        </label>
+        <label>
+          <span>第 1 周周一</span>
+          <input id="term-start" type="date" value="2026-08-31" />
+        </label>
+      </div>
+      <p id="validation-message" class="validation-message" role="status" aria-live="polite"></p>
+      <button id="refresh-bookmark" class="secondary-button" type="button">更新书签设置</button>
+    </section>
+
+    <section class="panel bookmark-panel" aria-labelledby="bookmark-title">
+      <div class="panel-heading">
+        <h2 id="bookmark-title">导出书签</h2>
+        <span class="required">请使用桌面浏览器</span>
+      </div>
+      <div class="bookmark-card">
+        <a id="bookmarklet" class="bookmarklet" href="#" draggable="true">↧ 导出山科课表</a>
+        <div>
+          <p><strong>拖动上面的按钮</strong>到浏览器收藏栏，然后在课表页面点击它。</p>
+          <p class="hint">Chrome / Edge：按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> 显示收藏栏。Safari 可将按钮拖到收藏栏。</p>
+        </div>
+      </div>
+      <div class="bookmark-actions">
+        <button id="copy-bookmark" class="secondary-button" type="button">复制书签代码</button>
+        <span id="copy-status" class="hint" role="status" aria-live="polite"></span>
+      </div>
+      <details>
+        <summary>无法拖动书签？</summary>
+        <p>先点击“复制书签代码”，新建一个浏览器收藏，将复制的内容粘贴到收藏的网址（URL）栏。请不要把它粘贴到教务系统的地址栏执行。</p>
+      </details>
+    </section>
+
+    <section class="support-box" aria-labelledby="support-title">
+      <h2 id="support-title">使用限制与排错</h2>
+      <ul>
+        <li>必须在“学期理论课表”已显示、周次为“全部”的页面点击书签。</li>
+        <li>若学校页面改版、出现验证码或浏览器阻止脚本，请保留截图和页面地址反馈，不要发送密码、Cookie 或完整课表。</li>
+        <li>书签必须在当前课表页面以页面权限运行；学校若启用严格 CSP，或课表位于跨域 iframe，浏览器会阻止读取。纯静态网页无法绕过该限制。</li>
+        <li>网页可在任意现代浏览器打开；书签导出主要支持 Chrome、Edge、Safari 等桌面浏览器。</li>
+      </ul>
+    </section>
+  </main>
+  <script src="./app.js" defer></script>
+</body>
+</html>
