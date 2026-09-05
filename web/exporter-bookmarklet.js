@@ -1,10 +1,7 @@
 (() => {
   'use strict';
 
-  const loadedFrom = document.currentScript && document.currentScript.src;
-  const LIBRARY_URL = loadedFrom
-    ? new URL('vendor/xlsx.bundle.js', loadedFrom).href
-    : 'https://opingur.github.io/ScheduleClawer_SDUST/web/vendor/xlsx.bundle.js';
+  const LIBRARY_URL = 'https://opingur.github.io/ScheduleClawer_SDUST/vendor/xlsx.bundle.js?v=20260905-1';
   const WEEKDAYS = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
   const WEEKDAY_MAP = { '星期一': 1, '周一': 1, '星期二': 2, '周二': 2, '星期三': 3, '周三': 3, '星期四': 4, '周四': 4, '星期五': 5, '周五': 5, '星期六': 6, '周六': 6, '星期日': 7, '星期天': 7, '周日': 7 };
   const PALETTE = ['F9B8C9', 'A9CEF5', 'BCE7D0', 'E6C8F3', 'F8D0A6', 'AEE6E4', 'F6D7A8', 'C9D9F8'];
@@ -337,7 +334,7 @@
       const script = document.createElement('script');
       script.src = LIBRARY_URL;
       script.async = true;
-      script.onload = () => window.XLSX ? resolve() : reject(new Error('Excel 组件未正确加载。'));
+      script.onload = () => window.XLSX ? resolve() : reject(new Error('Excel 组件未正确加载。请返回网页点击“更新书签设置”，替换旧收藏后重试。'));
       script.onerror = () => reject(new Error('Excel 组件加载失败。请检查网络后重试。'));
       document.head.appendChild(script);
     });
