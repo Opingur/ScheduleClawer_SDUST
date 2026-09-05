@@ -7,6 +7,13 @@
 
 当前稳定版本：[v1.0.2](https://github.com/Opingur/ScheduleClawer_SDUST/releases/tag/v1.0.2)。请从 Release 下载 [ScheduleExporter_SDUST_Installer_v1.0.2.exe](https://github.com/Opingur/ScheduleClawer_SDUST/releases/download/v1.0.2/ScheduleExporter_SDUST_Installer_v1.0.2.exe)。
 
+## 网页版（无需安装）
+
+可直接打开 [山科课表导出器网页版](https://opingur.github.io/ScheduleClawer_SDUST/)；它适合无法运行 Windows 安装版的用户。
+
+网页版不会要求或保存 WebVPN、教务系统账号和密码。用户需要先自行登录并在“学期理论课表”中选择“全部”查询，再将页面提供的“导出山科课表”按钮拖入浏览器收藏栏，在课表页点击收藏生成本地 Excel。它主要支持 Chrome、Edge、Safari 等桌面浏览器。
+
+受浏览器安全机制限制，纯静态网页不能替用户自动登录，也可能受学校页面的 CSP 或跨域 iframe 限制而无法读取课表；此时没有网页端的自动绕过方式，可改用桌面版或反馈脱敏截图。
 ## 适用范围
 
 - 仅适配山东科技大学当前的 WebVPN 与教务系统页面；

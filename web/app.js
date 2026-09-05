@@ -1,5 +1,5 @@
 (() => {
-  const SCRIPT_URL = 'https://opingur.github.io/ScheduleClawer_SDUST/web/exporter-bookmarklet.js';
+  const SCRIPT_URL = 'https://raw.githubusercontent.com/Opingur/ScheduleClawer_SDUST/aed5f14d3a730cc5d6272aee832ed3f6e500b9df/web/exporter-bookmarklet.js';
   const weekInput = document.querySelector('#week-count');
   const dateInput = document.querySelector('#term-start');
   const bookmark = document.querySelector('#bookmarklet');
