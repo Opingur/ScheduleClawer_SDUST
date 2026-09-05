@@ -5,15 +5,15 @@
 ![Platform](https://img.shields.io/badge/platform-Windows%20x64-0078D4)
 ![Release](https://img.shields.io/github/v/release/Opingur/ScheduleClawer_SDUST?display_name=tag)
 
-当前稳定版本：[v1.0.2](https://github.com/Opingur/ScheduleClawer_SDUST/releases/tag/v1.0.2)。请从 Release 下载 [ScheduleExporter_SDUST_Installer_v1.0.2.exe](https://github.com/Opingur/ScheduleClawer_SDUST/releases/download/v1.0.2/ScheduleExporter_SDUST_Installer_v1.0.2.exe)。
+当前稳定版本：[v1.0.2](https://github.com/Opingur/ScheduleClawer_SDUST/releases/tag/v1.0.2)。项目提供网页启动器与 Windows 免安装包；不再推荐安装器。
 
 ## 网页版（无需安装）
 
-可直接打开 [山科课表导出器网页版](https://opingur.github.io/ScheduleClawer_SDUST/)；它适合无法运行 Windows 安装版的用户。
+可直接打开 [山科课表导出器网页版](https://opingur.github.io/ScheduleClawer_SDUST/)；它适合所有桌面系统，也可作为无法运行 Windows 便携版时的替代方案。
 
 ### 无命令启动
 
-首次打开网页版后，支持的 Chrome / Edge 等浏览器会显示“安装到桌面”按钮。安装完成后，可从桌面或开始菜单双击“山科课表导出器”启动。若浏览器不支持安装网页应用，下载页面提供的“网页版启动器”并双击即可；该 HTML 文件只会打开最新版网页，不包含账号、密码或课表数据。也可以把网页版加入浏览器收藏夹作为启动入口。
+首次打开网页版后，支持的 Chrome / Edge 等浏览器会显示“安装到桌面”按钮。安装完成后，可从桌面或开始菜单双击“山科课表导出器”启动。若浏览器不支持安装网页应用，下载页面提供的“网页版启动器”并双击即可；该 HTML 文件会在默认浏览器打开最新版网页，不包含账号、密码或课表数据。也可以把网页版加入浏览器收藏夹作为启动入口。Windows 用户若需要独立程序，可使用发布的便携版文件夹，直接双击其中的 EXE，无需安装。
 
 网页版不会要求或保存 WebVPN、教务系统账号和密码。用户需要先自行登录并在“学期理论课表”中选择“全部”查询，再将页面提供的“导出山科课表”按钮拖入浏览器收藏栏，在课表页点击收藏生成本地 Excel。它主要支持 Chrome、Edge、Firefox、Safari、360、QQ、夸克等电脑浏览器。360 请使用极速模式；QQ/夸克如无法拖动，可复制按钮代码新建收藏。手机 App 通常不能稳定运行收藏栏脚本，建议使用电脑端。
 
@@ -30,13 +30,14 @@
 
 学校页面改版、临时启用验证码、强制改密、账号锁定或网络异常，都可能使自动化流程停在浏览器里。这不是对其他学校教务系统的通用爬虫，也与山东科技大学及其教务系统没有官方隶属关系。
 
-## 安装
+## Windows 免安装包
 
-1. 在 [Releases](https://github.com/Opingur/ScheduleClawer_SDUST/releases) 下载最新的 `ScheduleExporter_SDUST_Installer_*.exe`。
-2. 双击安装程序，选择安装位置；按需勾选“创建桌面快捷方式”。
-3. 从开始菜单或桌面快捷方式启动“课表导出器”。不要只复制安装目录中的单个 EXE 到别处运行。
+1. 从项目发布页下载并解压“山科课表导出器_免安装包”压缩包；不要直接在压缩软件中运行。
+2. 将解压得到的整个文件夹放在任意位置。必须保留文件夹内的全部文件。
+3. 双击 `课表导出器\课表导出器.exe` 即可运行。它已内置 Chromium 和 Excel 导出组件，不需要 Python、Node.js、Playwright 或安装器。
+4. 如果只想用网页方式，双击同一文件夹内的 `网页版启动器.html`；它会在默认浏览器打开网页版。随后在同一个浏览器中登录 WebVPN 与教务系统，再按网页提示导出。
 
-安装版已内置 Chromium 浏览器和 Excel 导出组件，不需要额外安装 Python、Node.js 或 Playwright。安装包没有代码签名时，Windows 可能显示 SmartScreen 提示；请只从本仓库的 Release 下载，并核对发布版本后再继续。程序目前没有自动更新功能。
+不要单独复制 EXE 到别处，否则内置浏览器无法找到。程序未签名时 Windows 可能显示 SmartScreen 提示；请只从本项目官方发布包获取文件并核对版本。程序目前没有自动更新功能。
 
 ## 首次导出
 
@@ -87,7 +88,7 @@
 
 | 现象 | 处理方式 |
 | --- | --- |
-| 提示找不到 Chromium / `chrome.exe` | 请卸载旧版后从 Release 重新安装最新版安装包。v1.0.2 已将浏览器内核随应用打包。不要使用仅复制出来的 EXE。 |
+| 提示找不到 Chromium / `chrome.exe` | 重新下载并完整解压最新“免安装包”，确认 EXE 仍位于 `课表导出器` 子文件夹中；不要只复制单个 EXE。 |
 | WebVPN 或教务系统登录失败 | 核对学号和密码；如果两个系统密码不同，取消“两个系统使用同一密码”后分别填写。确认网络可以打开 WebVPN。 |
 | 浏览器显示验证码、改密页面或其他提示 | 在保留的浏览器页面处理或记录问题；随后回到程序重新点击导出。 |
 | 提示未识别到课程卡片 | 确认系统中课表已查询且周次为“全部”。也可能是学校页面结构已变更；请提供脱敏截图和版本号反馈。 |
@@ -104,7 +105,7 @@ python -m playwright install chromium
 python app.py
 ```
 
-源代码运行时的 Playwright 浏览器需单独安装，因此不能把“已安装 Python 包”误认为“浏览器已下载”。普通使用者应优先使用 Release 的安装版。
+源代码运行时的 Playwright 浏览器需单独安装，因此不能把“已安装 Python 包”误认为“浏览器已下载”。普通使用者应优先使用免安装包或网页版。
 
 ### 项目结构
 
@@ -116,32 +117,35 @@ src/normalize.py          课表卡片解析、周次与时段标准化
 src/export_xlsx.py        Excel 布局、着色与长课合并
 src/export_service.py     导出编排与本地目录
 src/credential_store.py   Windows DPAPI 凭据存取
-build_release.ps1         应用和安装包构建脚本
-installer.iss             Inno Setup 安装器配置
+build_portable.ps1        免安装包构建脚本
+build_exe.ps1             兼容旧命令，转发到免安装构建
 ```
 
 数据流为：`desktop_app → browser_reader → normalize → export_xlsx`。
 
-## 构建安装包
+## 构建免安装包
 
-在仓库根目录准备 Python、Inno Setup 6 和 PyInstaller。`PyInstaller` 是构建依赖，不在运行依赖文件中，需要额外安装：
+在仓库根目录准备 Python 和 PyInstaller。`PyInstaller` 是构建依赖，不在运行依赖文件中，需要额外安装：
 
 ```powershell
 python -m pip install -r requirements.txt
 python -m pip install pyinstaller
-.\build_release.ps1
+.\build_portable.ps1
 ```
 
-构建脚本会下载 Playwright Chromium，并输出：
+构建脚本会下载（如尚未存在）Playwright Chromium，并在构建完成后显式复制到发布目录，输出：
 
-- `release\app\课表导出器\课表导出器.exe`：独立应用目录；
-- `release\课表导出器安装程序.exe`：可分发的安装程序。
+- `release\山科课表导出器_免安装包_v1.0.3\`：可直接压缩后分发的完整文件夹；
+- `release\山科课表导出器_免安装包_v1.0.3\课表导出器\课表导出器.exe`：Windows 启动文件；
+- `release\山科课表导出器_免安装包_v1.0.3\网页版启动器.html`：网页端启动文件。
 
-发布前建议至少手工验证：安装版可在未安装 Python 的 Windows 用户环境启动；同密码和不同密码两种登录；示例导出；实际日期计算；跨时段长课的纵向合并；“清除本机凭据”；以及“打开输出文件夹”。
+发布前建议至少手工验证：免安装包在未安装 Python 的 Windows 用户环境启动；内置 Chromium 存在；同密码和不同密码两种登录；示例导出；实际日期计算；跨时段长课的纵向合并；“清除本机凭据”；以及“打开输出文件夹”。
 
 仓库已忽略凭据、浏览器状态、导出文件和构建产物。提交或发布前仍应检查 `git status`，避免上传任何本地个人数据。
 
 ## 近期更新
 
-- `v1.0.2`：安装版显式使用随应用打包的 Chromium，修复他人电脑上找不到 Playwright 浏览器的问题。
+- `v1.0.3`：默认交付改为免安装包；构建后显式复制内置 Chromium，并同时附带网页启动器。
+- `v1.0.2`：桌面版显式使用随应用打包的 Chromium，修复他人电脑上找不到 Playwright 浏览器的问题。
 - `v1.0.1`：修复跨多个连续时段的长课未占满对应时间格的问题。
+
