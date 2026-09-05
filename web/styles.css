@@ -96,6 +96,10 @@ input:focus-visible, button:focus-visible, .bookmarklet:focus-visible, summary:f
 .bookmarklet:active { cursor: grabbing; }
 .drag-arrow { color: var(--blue); font-size: 23px; font-weight: 700; }
 .toolbar-example { display: inline-flex; min-height: 32px; align-items: center; padding: 0 10px; color: #536271; background: #f7f8fa; border: 1px dashed #aeb9c4; border-radius: 3px; font-size: 13px; }
+.browser-guide { margin: 16px 18px 0; padding: 12px 14px; color: #5d480e; background: #fff9e9; border: 1px solid #ecd69b; border-radius: 4px; font-size: 13px; line-height: 1.6; }
+.browser-guide strong { color: #715000; }
+.browser-guide ul { margin: 6px 0 0; padding-left: 18px; }
+.browser-guide li { margin: 3px 0; }
 .bookmark-actions { display: flex; align-items: center; gap: 10px; border-top: 1px dashed var(--line); }
 .bookmark-actions .secondary-button { margin-bottom: 12px; }
 details { margin: 0 18px 16px; color: var(--muted); font-size: 13px; line-height: 1.6; }

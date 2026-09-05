@@ -69,7 +69,7 @@
         <article class="install-step">
           <span class="step-label">第 1 步</span>
           <h3>先显示浏览器收藏栏</h3>
-          <p><strong>Chrome / Edge：</strong>按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd>。</p>
+          <p><strong>Chrome / Edge / 360 / QQ / 夸克电脑端：</strong>先按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd>；没有反应时，点右上角菜单，查找“收藏 / 书签”并开启“显示收藏栏”。</p>
           <p><strong>Firefox：</strong>右键浏览器顶部空白处 → 勾选“书签工具栏” → 选择“始终显示”。</p>
         </article>
         <article class="install-step drag-step">
@@ -88,6 +88,15 @@
           <p>先确认“学期理论课表”已经显示、周次是“全部”，再点击收藏栏中的“导出山科课表”。Excel 会自动下载。</p>
         </article>
       </div>
+      <aside class="browser-guide" aria-label="国产浏览器使用提示">
+        <strong>360、QQ、夸克用户请注意</strong>
+        <ul>
+          <li><b>360 安全浏览器：</b>请使用“极速模式”（闪电图标），不要使用兼容模式。</li>
+          <li><b>QQ / 夸克电脑端：</b>一般可按 Chrome 的方式操作；若拖动无效，使用下方“复制按钮代码”新建收藏。</li>
+          <li><b>手机 App：</b>可以打开本网页，但大多数手机浏览器不能稳定添加或运行此类收藏栏按钮；请用电脑浏览器导出。</li>
+          <li><b>安全软件拦截：</b>若浏览器禁止 `javascript:` 收藏，纯网页无法绕过，建议换 Chrome、Edge 或 Firefox 电脑端。</li>
+        </ul>
+      </aside>
       <div class="bookmark-actions">
         <button id="copy-bookmark" class="secondary-button" type="button">不会拖动？复制按钮代码</button>
         <span id="copy-status" class="hint" role="status" aria-live="polite"></span>
@@ -104,7 +113,7 @@
         <li>必须在“学期理论课表”已显示、周次为“全部”的页面点击书签。</li>
         <li>若学校页面改版、出现验证码或浏览器阻止脚本，请保留截图和页面地址反馈，不要发送密码、Cookie 或完整课表。</li>
         <li>书签必须在当前课表页面以页面权限运行；学校若启用严格 CSP，或课表位于跨域 iframe，浏览器会阻止读取。纯静态网页无法绕过该限制。</li>
-        <li>网页可在任意现代浏览器打开；书签导出主要支持 Chrome、Edge、Firefox、Safari 等桌面浏览器。</li>
+        <li>网页可在任意现代浏览器打开；书签导出主要支持 Chrome、Edge、Firefox、Safari、360、QQ、夸克等桌面浏览器。</li>
       </ul>
     </section>
   </main>
