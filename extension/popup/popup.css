@@ -1,0 +1,21 @@
+:root { color-scheme: light; font-family: "Segoe UI", "Microsoft YaHei", sans-serif; color: #182230; background: #f5f7fb; }
+* { box-sizing: border-box; }
+body { margin: 0; width: 360px; }
+main { padding: 20px; }
+header { margin-bottom: 18px; }
+.eyebrow { margin: 0 0 6px; color: #147a46; font-size: 10px; font-weight: 700; letter-spacing: .08em; }
+h1 { margin: 0; font-size: 22px; line-height: 1.2; }
+.intro, .hint, details p { color: #596579; font-size: 13px; line-height: 1.55; }
+.intro { margin: 8px 0 0; }
+label { display: grid; gap: 7px; margin: 12px 0; color: #28364a; font-size: 13px; font-weight: 650; }
+input { min-height: 38px; border: 1px solid #c5cfdf; border-radius: 7px; padding: 0 10px; color: #182230; font: inherit; background: #fff; }
+input:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #9fc3fb; outline-offset: 2px; }
+.hint { margin: 5px 0 17px; }
+button { width: 100%; min-height: 42px; border: 0; border-radius: 8px; color: #fff; background: #1769d3; font: inherit; font-weight: 700; cursor: pointer; }
+button:hover { background: #1059b4; }
+button:disabled { cursor: wait; background: #91a8c9; }
+.status { min-height: 40px; margin: 14px 0; padding: 10px 11px; border-radius: 7px; color: #425168; background: #eaf0fa; font-size: 12px; line-height: 1.45; }
+.status.error { color: #982c22; background: #fff0ed; }
+.status.success { color: #16663c; background: #e8f7ee; }
+details { border-top: 1px solid #dbe2ee; padding-top: 12px; color: #425168; font-size: 12px; }
+summary { cursor: pointer; font-weight: 650; }

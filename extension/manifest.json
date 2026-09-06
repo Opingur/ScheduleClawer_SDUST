@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "课表导出器（通用测试版）",
+  "version": "0.1.0",
+  "description": "在用户已登录的课表页本地读取课程并导出 Excel。不会保存账号、密码或 Cookie。",
+  "minimum_chrome_version": "102",
+  "action": {
+    "default_title": "导出当前课表",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": ["activeTab", "scripting", "storage"]
+}

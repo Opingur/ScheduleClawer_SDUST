@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>课表导出器</title>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">LOCAL · NO PASSWORD STORAGE</p>
+      <h1>导出当前课表</h1>
+      <p class="intro">先在当前标签页打开并查询“全部周次”课表，再点击导出。</p>
+    </header>
+
+    <label>
+      学期总周数
+      <input id="week-count" type="number" min="1" max="30" value="20" required />
+    </label>
+    <label>
+      第 1 周周一
+      <input id="term-start-monday" type="date" required />
+    </label>
+    <p class="hint">用于生成每周的实际日期；请按学校校历填写。</p>
+
+    <button id="export" type="button">读取当前页面并导出 Excel</button>
+    <p id="status" class="status" role="status" aria-live="polite">插件不会读取或保存账号、密码、Cookie。</p>
+
+    <details>
+      <summary>使用范围与隐私</summary>
+      <p>此测试版识别含星期、课程时间、教师和地点的课表表格或课程卡片。无法识别时，请确认课表已经查询并切换至“全部周次”。</p>
+    </details>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

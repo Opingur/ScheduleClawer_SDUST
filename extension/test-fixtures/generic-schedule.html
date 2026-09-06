@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8" /><title>通用课表测试页</title></head>
+<body>
+  <h1>学期理论课表</h1>
+  <table>
+    <thead><tr><th>时间 / 节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>第一大节（01、02小节）08:00–09:50</td>
+        <td><div>程序设计<br />老师：李老师<br />时间：1-16周[1-2节]<br />地点：A101</div></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>第二大节（03、04小节）10:10–12:00</td>
+        <td></td><td><div>数据结构<br />教师：王老师<br />时间：2-16周双周[3-4节]<br />地点：B203</div></td>
+        <td><div>大学英语<br />任课教师：陈老师<br />1-16周[3-4节]<br />上课地点：C305</div></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+    </tbody>
+  </table>
+  <button id="export">导出测试课表</button>
+  <output id="result"></output>
+  <script src="../vendor/xlsx.bundle.js"></script>
+  <script src="../content/exporter-core.js"></script>
+  <script>
+    document.querySelector('#export').addEventListener('click', async () => {
+      try {
+        const result = await window.SDUSTScheduleExporter.run({ weekCount: 16, termStartMonday: '2026-08-31' });
+        document.querySelector('#result').textContent = `导出成功：${result.courseCount} 条课程`;
+      } catch (error) {
+        document.querySelector('#result').textContent = `失败：${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
+
