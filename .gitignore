@@ -18,3 +18,8 @@ __pycache__/
 frontend/
 src/web_server.py
 src/export_xlsx.mjs
+# Local end-user delivery files
+Windows免安装版/
+启动课表导出器网页版.html
+使用说明.txt
+
